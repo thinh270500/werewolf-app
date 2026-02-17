@@ -1,17 +1,87 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header class="ion-no-border">
+  <ion-toolbar class="dark-toolbar">
     <ion-title>
-      Tab 3
+      <span [class.night-text]="phase === 'night'" [class.day-text]="phase === 'day'">
+        {{ phase === 'night' ? '🌙 ĐÊM TỊNH MỊCH' : '☀️ LÀNG THỨC GIẤC' }}
+      </span>
     </ion-title>
+    <ion-buttons slot="end" *ngIf="isHost">
+      <ion-button (click)="nextPhase()" class="btn-phase">
+        <ion-icon slot="start" name="swap-horizontal-outline"></ion-icon>
+        <ion-label>{{ phase === 'night' ? 'SANG NGÀY' : 'SANG ĐÊM' }}</ion-label>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="dark-bg ion-padding">
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <div class="admin-info" *ngIf="isHost">
+    <p>
+      <ion-icon name="information-circle-outline"></ion-icon> 
+      Chạm vào người chơi để đánh dấu hành động
+    </p>
+  </div>
+
+  <div class="card-scene" *ngIf="!isHost">
+    <div class="role-card" [class.is-flipped]="isFlipped" (click)="flipCard()">
+      
+      <div class="card-face card-front">
+        <div class="mystery-circle">
+          <ion-icon name="help-circle-outline"></ion-icon>
+        </div>
+        <p>Chạm để xem vai trò</p>
+      </div>
+
+      <div class="card-face card-back">
+        <div class="card-back-content">
+          <ion-icon name="skull-outline" *ngIf="!myData?.alive" class="dead-status-icon"></ion-icon>
+          
+          <div class="role-header">
+            <h2 class="role-name">{{ myData?.role }}</h2>
+            <div class="role-divider"></div>
+          </div>
+
+          <p class="role-description">
+            {{ getRoleDesc(myData?.role) }}
+          </p>
+
+          <div class="status-badge" [class.is-dead]="!myData?.alive">
+            {{ myData?.alive ? 'ĐANG SỐNG' : 'ĐÃ CHẾT' }}
+          </div>
+        </div>
+      </div>
+
+    </div> </div> <div class="village-section">
+    <h3 class="village-title">{{ isHost ? 'BÀN CỜ CHIẾN THUẬT' : 'DÂN LÀNG TRONG VÙNG' }}</h3>
+    
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4" *ngFor="let p of players" (click)="openHostAction(p)" class="p-col">
+          <div class="avatar-container" [class.is-dead]="!p.alive" [class.is-host]="p.isHost">
+            <img [src]="p.avatar || 'https://api.dicebear.com/7.x/avataaars/svg?seed=' + p.name">
+            
+            <div class="action-badge" *ngIf="isHost && p.note">
+              <span *ngIf="p.note === 'kill'">⚔️</span>
+              <span *ngIf="p.note === 'save'">🛡️</span>
+              <span *ngIf="p.note === 'check'">🔮</span>
+              <span *ngIf="p.note === 'poison'">🧪</span>
+            </div>
+
+            <div class="dead-overlay" *ngIf="!p.alive">
+              <ion-icon name="close-circle"></ion-icon>
+            </div>
+          </div>
+          
+          <div class="player-info">
+            <span class="p-name">{{p.name}}</span>
+            <span class="p-role" *ngIf="isHost" [class.gold-text]="p.isHost">
+              {{ p.isHost ? 'QUẢN TRÒ' : p.role }}
+            </span>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
 </ion-content>

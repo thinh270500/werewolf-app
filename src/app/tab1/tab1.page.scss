@@ -1,0 +1,199 @@
+/* Nền tối sâu */
+.dark-bg {
+  --background: #0a0e14;
+  background: #0a0e14;
+}
+
+.gold-text {
+  color: #ffd700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+/* Header */
+.header-container {
+  padding-top: 20px;
+  .logo-wrapper {
+    position: relative;
+    display: inline-block;
+    img {
+      width: 120px;
+      border-radius: 50%;
+      border: 3px solid #ffd700;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+    }
+  }
+  .tet-title {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 800;
+    margin-top: 15px;
+    letter-spacing: 2px;
+  }
+}
+
+/* Card Style mới */
+.dark-card {
+  background: #161d27;
+  border: 1px solid #232d3b;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+
+  .card-header {
+    background: #1c2532;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #232d3b;
+    h2 {
+      margin: 0;
+      font-size: 16px;
+      color: #ffd700;
+      font-weight: bold;
+    }
+    ion-icon { font-size: 20px; }
+  }
+
+  .card-body {
+    padding: 20px;
+  }
+}
+
+/* Range & Input */
+.label-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  color: #adb5bd;
+  font-size: 14px;
+}
+
+.custom-range {
+  --bar-background: #232d3b;
+  --bar-background-active: #ffd700;
+  --knob-background: #ffd700;
+  --pin-background: #ffd700;
+  --pin-color: #000;
+  ion-label { color: #505d6e; font-size: 12px; }
+}
+
+/* Segment */
+.dark-segment {
+  background: #0a0e14 !important;
+  border-radius: 12px;
+  padding: 4px;
+  ion-segment-button {
+    --color: #adb5bd;
+    --color-checked: #000;
+    --background-checked: #ffd700;
+    --indicator-color: transparent;
+    border-radius: 10px;
+  }
+}
+
+/* Radio */
+.dark-radio-item {
+  --background: transparent;
+  --color: #adb5bd;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* Input Wrapper */
+.dark-input-wrapper {
+  background: #0a0e14;
+  border: 1px solid #232d3b;
+  border-radius: 12px;
+  padding: 5px 15px;
+  ion-input {
+    --color: #fff;
+    --placeholder-color: #505d6e;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 2px;
+  }
+}
+
+/* Buttons */
+.btn-gold {
+  --background: #ffd700;
+  --background-activated: #e6c200;
+  --color: #000;
+  --border-radius: 12px;
+  font-weight: bold;
+  height: 50px;
+  margin: 0;
+}
+
+.btn-outline-gold {
+  --color: #ffd700;
+  --border-color: #ffd700;
+  --border-radius: 12px;
+  font-weight: bold;
+  height: 50px;
+}
+
+.footer-note {
+  margin-top: 30px;
+  p { color: #303d4d; font-size: 10px; }
+}
+
+.mt-10 { margin-top: 10px; }
+.mt-20 { margin-top: 20px; }
+
+/* Hiệu ứng Logo động */
+.logo-animation {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid #ffd700;
+  
+  /* Gán hiệu ứng nhịp thở và xoay nhẹ */
+  animation: pulse-glow 3s infinite ease-in-out, slow-rotate 10s infinite linear;
+  
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+  object-fit: cover;
+}
+
+/* Định nghĩa hiệu ứng Nhịp thở + Phát sáng */
+@keyframes pulse-glow {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 35px rgba(255, 215, 0, 0.8), 0 0 10px rgba(255, 255, 255, 0.5);
+    border-color: #ffffff; /* Đổi màu viền nhẹ khi nở ra */
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+  }
+}
+
+/* Định nghĩa hiệu ứng Xoay chậm cho thêm phần huyền bí */
+@keyframes slow-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(5deg); } /* Chỉ xoay nhẹ rồi trả về nếu kết hợp pulse */
+}
+
+/* Container chứa logo để căn giữa */
+.logo-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 10px;
+  
+  /* Hiệu ứng đổ bóng nền phía sau logo */
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 100px; height: 100px;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    z-index: -1;
+  }
+}

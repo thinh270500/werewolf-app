@@ -13,8 +13,9 @@ import { Tab2PageRoutingModule } from './tab2-routing.module';
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
+    Tab2Page,
     Tab2PageRoutingModule
   ],
-  declarations: [Tab2Page]
+  declarations: []
 })
 export class Tab2PageModule {}

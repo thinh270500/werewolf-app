@@ -1,17 +1,52 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
+<ion-header class="ion-no-border">
+  <ion-toolbar class="dark-toolbar">
+    <ion-title>PHÒNG: <span class="gold-text">{{roomCode}}</span></ion-title>
+    <ion-buttons slot="end" *ngIf="isHostUser">
+      <ion-button color="danger" (click)="endGame()">
+        <ion-icon name="power-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="dark-bg ion-padding">
+  <div class="host-status" *ngIf="isHostUser">
+    <div class="circle-progress" [class.ready]="selectedRoles.length === displayCount">
+      {{selectedRoles.length}}/{{displayCount}}
+    </div>
+    <p>Thiết lập vai trò</p>
+  </div>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <div class="role-grid" *ngIf="isHostUser">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4" *ngFor="let role of availableRoles">
+          <div class="role-item" [class.selected]="getRoleCount(role.name) > 0" (click)="addRole(role.name)">
+            <div class="badge" *ngIf="getRoleCount(role.name) > 0">{{getRoleCount(role.name)}}</div>
+            <ion-icon [name]="role.icon" [color]="role.color"></ion-icon>
+            <span class="label">{{role.name}}</span>
+            <div class="btn-minus" *ngIf="getRoleCount(role.name) > 0" (click)="removeRole(role.name); $event.stopPropagation()">
+              <ion-icon name="remove-outline"></ion-icon>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div class="player-list">
+    <h3 class="title">NGƯỜI CHƠI TRONG PHÒNG</h3>
+    <div class="flex-players">
+      <div class="p-item" *ngFor="let p of players" [class.host-border]="p.isHost">
+        <img [src]="p.avatar || 'https://api.dicebear.com/7.x/avataaars/svg?seed=' + p.name">
+        <span>{{p.name}}</span>
+      </div>
+    </div>
+  </div>
 </ion-content>
+
+<ion-footer class="ion-no-border dark-bg" *ngIf="isHostUser">
+  <ion-button expand="block" [disabled]="selectedRoles.length !== displayCount" class="btn-start" (click)="startGame()">
+    BẮT ĐẦU VÁN ĐẤU
+  </ion-button>
+</ion-footer>
