@@ -1,0 +1,8 @@
+{
+  "name": "Werewolf App",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "816e2cf9"
+}
