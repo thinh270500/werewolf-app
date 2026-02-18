@@ -1,26 +1,21 @@
-/* Nền tối sâu */
-.dark-bg {
-  --background: #0a0e14;
-  background: #0a0e14;
+.dark-bg { --background: #0a0e14; }
+.gold-text { color: #ffd700; text-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
+
+/* Wrapper căn giữa cho bản Web */
+.main-wrapper {
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
 }
 
-.gold-text {
-  color: #ffd700;
-  text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-}
-
-/* Giới hạn độ rộng Card cho bản Web */
 .dark-card {
-  max-width: 480px; 
-  margin: 20px auto;
   background: #161d27;
   border: 1px solid #232d3b;
   border-radius: 20px;
-  overflow: visible;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-
+  margin-top: 20px;
+  
   .card-header {
-    background: #1c2532;
     padding: 15px;
     display: flex;
     align-items: center;
@@ -33,38 +28,46 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 20px; // Ép các thành phần cách nhau, không đè lên nhau
+    gap: 20px; // ÉP BUỘC CÁC MỤC CÁCH NHAU
   }
 }
 
-/* Ô nhập số thay cho thanh trượt */
-.number-input {
-  ion-input {
-    --text-align: center;
-    font-size: 1.4rem;
-    font-weight: bold;
-    color: #ffd700 !important;
-  }
-}
-
-/* Fix lỗi chữ dính nhau Manual/Auto */
+/* Fix lỗi Segment dính chữ */
 .dark-segment {
-  --background: #0a0e14;
-  background: #0a0e14;
-  min-height: 48px;
-  display: flex !important;
+  background: #0a0e14 !important;
   border-radius: 12px;
-
+  padding: 4px;
+  min-height: 48px;
+  
   ion-segment-button {
-    flex: 1;
     --color-checked: #000;
     --background-checked: #ffd700;
     --indicator-color: transparent;
-    ion-label { font-weight: bold; font-size: 14px; }
+    font-weight: bold;
   }
 }
 
-/* Nút bấm vàng */
+/* Custom Input */
+.dark-input-wrapper {
+  background: #0a0e14;
+  border: 1px solid #232d3b;
+  border-radius: 12px;
+  ion-input {
+    --color: #fff;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+}
+
+/* Radio Items */
+.dark-radio-item {
+  --background: transparent;
+  --color: #adb5bd;
+  ion-radio { --color: #ffd700; --color-checked: #ffd700; }
+  ion-label { font-size: 14px; margin-left: 10px; }
+}
+
+/* Buttons */
 .btn-gold {
   --background: #ffd700;
   --color: #000;
@@ -72,24 +75,22 @@
   font-weight: 800;
   height: 55px;
   margin: 0;
-  z-index: 10;
 }
 
-/* Logo & Animation */
+/* Logo Animation */
 .logo-animation {
   width: 120px; height: 120px;
   border-radius: 50%;
   border: 3px solid #ffd700;
-  animation: pulse-glow 3s infinite ease-in-out;
+  animation: pulse 2s infinite;
   object-fit: cover;
 }
 
-@keyframes pulse-glow {
-  0%, 100% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 215, 0, 0.4); }
-  50% { transform: scale(1.05); box-shadow: 0 0 30px rgba(255, 215, 0, 0.7); }
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
+  50% { transform: scale(1.05); box-shadow: 0 0 25px rgba(255, 215, 0, 0.8); }
+  100% { transform: scale(1); box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
 }
 
-/* Các tiện ích khác */
-.label-flex { display: flex; justify-content: space-between; color: #adb5bd; font-size: 14px; }
-.dark-input-wrapper { background: #0a0e14; border: 1px solid #232d3b; border-radius: 12px; padding: 5px 15px; }
+.mt-10 { margin-top: 10px; }
 .mt-20 { margin-top: 20px; }
