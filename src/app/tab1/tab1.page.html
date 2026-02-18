@@ -2,7 +2,6 @@
   <div class="header-container ion-text-center">
     <div class="logo-wrapper">
       <img src="/assets/images/tet2026logo.jpg" class="logo-animation" alt="Ma Sói Tết">
-      <div class="logo-overlay"></div>
     </div>
     <h1 class="tet-title">MA SÓI TẾT <span class="gold-text">2026</span></h1>
   </div>
@@ -17,15 +16,19 @@
       <div class="input-group">
         <div class="label-flex">
           <span>Số lượng người chơi</span>
-          <ion-badge color="warning">{{playerCount}}</ion-badge>
         </div>
-        <ion-range min="5" max="20" step="1" snaps="true" [(ngModel)]="playerCount" class="custom-range">
-          <ion-label slot="start">5</ion-label>
-          <ion-label slot="end">20</ion-label>
-        </ion-range>
+        <div class="dark-input-wrapper number-input">
+          <ion-input 
+            type="number" 
+            [(ngModel)]="playerCount" 
+            min="4" 
+            max="20" 
+            placeholder="Nhập 4 - 20">
+          </ion-input>
+        </div>
       </div>
 
-      <ion-segment [(ngModel)]="gameMode" (ionChange)="onModeChange()" mode="ios" class="dark-segment">
+      <ion-segment [(ngModel)]="gameMode" (ionChange)="onModeChange()" mode="ios" class="dark-segment mt-20">
         <ion-segment-button value="manual">
           <ion-label>Manual</ion-label>
         </ion-segment-button>
@@ -34,7 +37,7 @@
         </ion-segment-button>
       </ion-segment>
 
-      <div *ngIf="gameMode === 'manual'" class="sub-mode-container">
+      <div *ngIf="gameMode === 'manual'" class="sub-mode-container mt-10">
         <ion-radio-group [(ngModel)]="subMode">
           <ion-row>
             <ion-col size="6">
@@ -66,7 +69,7 @@
     </div>
     <div class="card-body">
       <div class="dark-input-wrapper">
-        <ion-input [(ngModel)]="roomCode" placeholder="Nhập mã phòng..." type="tel"></ion-input>
+        <ion-input [(ngModel)]="roomCode" placeholder="Mã phòng..." type="tel"></ion-input>
       </div>
       <ion-button expand="block" fill="outline" class="btn-outline-gold mt-10" (click)="joinRoom()">
         VÀO LÀNG
