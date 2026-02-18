@@ -1,83 +1,82 @@
 <ion-content [fullscreen]="true" class="dark-bg ion-padding">
-  <div class="header-container ion-text-center">
-    <div class="logo-wrapper">
-      <img src="/assets/images/tet2026logo.jpg" class="logo-animation" alt="Ma Sói Tết">
+  <div class="main-wrapper">
+    <div class="header-container ion-text-center">
+      <div class="logo-wrapper">
+        <img src="assets/images/tet2026logo.jpg" class="logo-animation" alt="Ma Sói Tết">
+      </div>
+      <h1 class="tet-title">MA SÓI TẾT <span class="gold-text">2026</span></h1>
     </div>
-    <h1 class="tet-title">MA SÓI TẾT <span class="gold-text">2026</span></h1>
-  </div>
 
-  <div class="dark-card mt-20">
-    <div class="card-header">
-      <ion-icon name="add-circle-outline" color="warning"></ion-icon>
-      <h2>Tạo Phòng Mới</h2>
-    </div>
-    
-    <div class="card-body">
-      <div class="input-group">
-        <div class="label-flex">
-          <span>Số lượng người chơi (4-20)</span>
+    <div class="dark-card">
+      <div class="card-header">
+        <ion-icon name="add-circle-outline" color="warning"></ion-icon>
+        <h2>Tạo Phòng Mới</h2>
+      </div>
+      
+      <div class="card-body">
+        <div class="setting-item">
+          <div class="label-flex">
+            <span>Số lượng người chơi (4-20)</span>
+            <ion-badge color="warning">{{playerCount}}</ion-badge>
+          </div>
+          <div class="dark-input-wrapper">
+            <ion-input type="number" [(ngModel)]="playerCount" min="4" max="20" class="ion-text-center"></ion-input>
+          </div>
         </div>
-        <div class="dark-input-wrapper number-input">
-          <ion-input 
-            type="number" 
-            [(ngModel)]="playerCount" 
-            min="4" 
-            max="20" 
-            placeholder="Ví dụ: 8">
-          </ion-input>
+
+        <div class="setting-item">
+          <ion-segment [(ngModel)]="gameMode" mode="ios" class="dark-segment">
+            <ion-segment-button value="manual">
+              <ion-label>Manual</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="auto">
+              <ion-label>Auto</ion-label>
+            </ion-segment-button>
+          </ion-segment>
         </div>
+
+        <div *ngIf="gameMode === 'manual'" class="sub-mode-container setting-item">
+          <ion-radio-group [(ngModel)]="subMode">
+            <ion-row>
+              <ion-col size="6">
+                <ion-item lines="none" class="dark-radio-item">
+                  <ion-radio slot="start" value="casual"></ion-radio>
+                  <ion-label>Casual</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col size="6">
+                <ion-item lines="none" class="dark-radio-item">
+                  <ion-radio slot="start" value="mix"></ion-radio>
+                  <ion-label>Mix Mode</ion-label>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-radio-group>
+        </div>
+
+        <ion-button expand="block" class="btn-gold" (click)="createRoom()">
+          KHAI XUÂN LẬP PHÒNG
+        </ion-button>
       </div>
+    </div>
 
-      <ion-segment [(ngModel)]="gameMode" (ionChange)="onModeChange()" mode="ios" class="dark-segment">
-        <ion-segment-button value="manual">
-          <ion-label>Manual</ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="auto">
-          <ion-label>Auto</ion-label>
-        </ion-segment-button>
-      </ion-segment>
-
-      <div *ngIf="gameMode === 'manual'" class="sub-mode-container">
-        <ion-radio-group [(ngModel)]="subMode">
-          <ion-row>
-            <ion-col size="6">
-              <ion-item lines="none" class="dark-radio-item">
-                <ion-radio slot="start" value="casual" color="warning"></ion-radio>
-                <ion-label>Casual</ion-label>
-              </ion-item>
-            </ion-col>
-            <ion-col size="6">
-              <ion-item lines="none" class="dark-radio-item">
-                <ion-radio slot="start" value="mix" color="warning"></ion-radio>
-                <ion-label>Mix Mode</ion-label>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-        </ion-radio-group>
+    <div class="dark-card mt-20">
+      <div class="card-header">
+        <ion-icon name="enter-outline" color="secondary"></ion-icon>
+        <h2>Tham Gia Phòng</h2>
       </div>
-
-      <ion-button expand="block" class="btn-gold" (click)="createRoom()">
-        KHAI XUÂN LẬP PHÒNG
-      </ion-button>
-    </div>
-  </div>
-
-  <div class="dark-card mt-20">
-    <div class="card-header">
-      <ion-icon name="enter-outline" color="secondary"></ion-icon>
-      <h2>Tham Gia Phòng</h2>
-    </div>
-    <div class="card-body">
-      <div class="dark-input-wrapper">
-        <ion-input [(ngModel)]="roomCode" placeholder="Nhập mã phòng..." type="tel"></ion-input>
+      <div class="card-body">
+        <div class="dark-input-wrapper">
+          <ion-input [(ngModel)]="roomCode" placeholder="Mã phòng..." type="tel" class="ion-text-center"></ion-input>
+        </div>
+        <ion-button expand="block" fill="outline" class="btn-outline-gold mt-10" (click)="joinRoom()">
+          VÀO LÀNG
+        </ion-button>
       </div>
-      <ion-button expand="block" fill="outline" class="btn-outline-gold mt-10" (click)="joinRoom()">
-        VÀO LÀNG
-      </ion-button>
     </div>
-  </div>
 
-  <div class="footer-note ion-text-center">
-    <p>© 2026 Werewolf Tet Edition - Zein Custom</p>
+    <div class="footer-note ion-text-center">
+      <p>© 2026 Werewolf Tet Edition - Zein Custom</p>
+    </div>
   </div>
 </ion-content>
