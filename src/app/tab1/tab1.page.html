@@ -15,7 +15,7 @@
     <div class="card-body">
       <div class="input-group">
         <div class="label-flex">
-          <span>Số lượng người chơi</span>
+          <span>Số lượng người chơi (4-20)</span>
         </div>
         <div class="dark-input-wrapper number-input">
           <ion-input 
@@ -23,12 +23,12 @@
             [(ngModel)]="playerCount" 
             min="4" 
             max="20" 
-            placeholder="Nhập 4 - 20">
+            placeholder="Ví dụ: 8">
           </ion-input>
         </div>
       </div>
 
-      <ion-segment [(ngModel)]="gameMode" (ionChange)="onModeChange()" mode="ios" class="dark-segment mt-20">
+      <ion-segment [(ngModel)]="gameMode" (ionChange)="onModeChange()" mode="ios" class="dark-segment">
         <ion-segment-button value="manual">
           <ion-label>Manual</ion-label>
         </ion-segment-button>
@@ -37,7 +37,7 @@
         </ion-segment-button>
       </ion-segment>
 
-      <div *ngIf="gameMode === 'manual'" class="sub-mode-container mt-10">
+      <div *ngIf="gameMode === 'manual'" class="sub-mode-container">
         <ion-radio-group [(ngModel)]="subMode">
           <ion-row>
             <ion-col size="6">
@@ -56,7 +56,7 @@
         </ion-radio-group>
       </div>
 
-      <ion-button expand="block" class="btn-gold mt-20" (click)="createRoom()">
+      <ion-button expand="block" class="btn-gold" (click)="createRoom()">
         KHAI XUÂN LẬP PHÒNG
       </ion-button>
     </div>
@@ -69,7 +69,7 @@
     </div>
     <div class="card-body">
       <div class="dark-input-wrapper">
-        <ion-input [(ngModel)]="roomCode" placeholder="Mã phòng..." type="tel"></ion-input>
+        <ion-input [(ngModel)]="roomCode" placeholder="Nhập mã phòng..." type="tel"></ion-input>
       </div>
       <ion-button expand="block" fill="outline" class="btn-outline-gold mt-10" (click)="joinRoom()">
         VÀO LÀNG
