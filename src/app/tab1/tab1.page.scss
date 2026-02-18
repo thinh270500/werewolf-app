@@ -1,96 +1,95 @@
 .dark-bg { --background: #0a0e14; }
-.gold-text { color: #ffd700; text-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
 
-/* Wrapper căn giữa cho bản Web */
 .main-wrapper {
-  max-width: 500px;
+  max-width: 450px;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
+  pointer-events: auto; // Đảm bảo bắt được sự kiện click
 }
 
 .dark-card {
   background: #161d27;
-  border: 1px solid #232d3b;
   border-radius: 20px;
-  margin-top: 20px;
-  
-  .card-header {
-    padding: 15px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    border-bottom: 1px solid #232d3b;
-    h2 { margin: 0; font-size: 16px; color: #ffd700; font-weight: bold; }
-  }
+  border: 1px solid #232d3b;
+  overflow: hidden;
+  position: relative;
+  z-index: 10; // Đảm bảo card nằm trên cùng
 
   .card-body {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 20px; // ÉP BUỘC CÁC MỤC CÁCH NHAU
+    gap: 15px; // Ép khoảng cách giữa các khối, không cho chồng lên nhau
   }
 }
 
-/* Fix lỗi Segment dính chữ */
-.dark-segment {
-  background: #0a0e14 !important;
+/* Fix Input Text & Number */
+.custom-input-box {
+  background: #000;
+  border: 1px solid #333;
   border-radius: 12px;
-  padding: 4px;
-  min-height: 48px;
+  padding: 5px 15px;
+  
+  ion-input {
+    --color: #ffd700;
+    --placeholder-color: #555;
+    font-weight: bold;
+    font-size: 1.1rem;
+    height: 45px;
+  }
+}
+
+/* Fix Segment */
+.custom-segment {
+  background: #000 !important;
+  border-radius: 10px;
+  min-height: 45px;
   
   ion-segment-button {
+    --color: #888;
     --color-checked: #000;
     --background-checked: #ffd700;
     --indicator-color: transparent;
-    font-weight: bold;
   }
 }
 
-/* Custom Input */
-.dark-input-wrapper {
-  background: #0a0e14;
-  border: 1px solid #232d3b;
-  border-radius: 12px;
-  ion-input {
-    --color: #fff;
-    font-weight: bold;
-    font-size: 1.2rem;
+/* Thay thế radio bằng nút Pill cho mượt Web */
+.sub-mode-box {
+  display: flex;
+  gap: 10px;
+  
+  .radio-pill {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #333;
+    border-radius: 8px;
+    color: #888;
+    font-size: 0.9rem;
+    transition: 0.3s;
+    cursor: pointer;
+    
+    &.active {
+      border-color: #ffd700;
+      color: #ffd700;
+      background: rgba(255, 215, 0, 0.1);
+    }
   }
 }
 
-/* Radio Items */
-.dark-radio-item {
-  --background: transparent;
-  --color: #adb5bd;
-  ion-radio { --color: #ffd700; --color-checked: #ffd700; }
-  ion-label { font-size: 14px; margin-left: 10px; }
-}
-
-/* Buttons */
+/* Khôi phục quyền Click cho Button */
 .btn-gold {
   --background: #ffd700;
   --color: #000;
   --border-radius: 12px;
-  font-weight: 800;
-  height: 55px;
+  font-weight: bold;
+  height: 50px;
   margin: 0;
+  z-index: 50; // Ưu tiên cao nhất để bấm được
 }
 
-/* Logo Animation */
-.logo-animation {
-  width: 120px; height: 120px;
-  border-radius: 50%;
-  border: 3px solid #ffd700;
-  animation: pulse 2s infinite;
-  object-fit: cover;
+.btn-outline-gold {
+  --color: #ffd700;
+  --border-color: #ffd700;
+  --border-radius: 12px;
+  height: 50px;
 }
-
-@keyframes pulse {
-  0% { transform: scale(1); box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
-  50% { transform: scale(1.05); box-shadow: 0 0 25px rgba(255, 215, 0, 0.8); }
-  100% { transform: scale(1); box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
-}
-
-.mt-10 { margin-top: 10px; }
-.mt-20 { margin-top: 20px; }
