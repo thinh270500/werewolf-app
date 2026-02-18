@@ -1,80 +1,95 @@
-/* Fix lỗi ô nhập số */
+/* Nền tối sâu */
+.dark-bg {
+  --background: #0a0e14;
+  background: #0a0e14;
+}
+
+.gold-text {
+  color: #ffd700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+/* Giới hạn độ rộng Card cho bản Web */
+.dark-card {
+  max-width: 480px; 
+  margin: 20px auto;
+  background: #161d27;
+  border: 1px solid #232d3b;
+  border-radius: 20px;
+  overflow: visible;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+
+  .card-header {
+    background: #1c2532;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #232d3b;
+    h2 { margin: 0; font-size: 16px; color: #ffd700; font-weight: bold; }
+  }
+
+  .card-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; // Ép các thành phần cách nhau, không đè lên nhau
+  }
+}
+
+/* Ô nhập số thay cho thanh trượt */
 .number-input {
-  margin-top: 5px;
   ion-input {
     --text-align: center;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+    font-weight: bold;
     color: #ffd700 !important;
   }
 }
 
-/* Quan trọng: Fix Segment để không bị mất CSS */
+/* Fix lỗi chữ dính nhau Manual/Auto */
 .dark-segment {
   --background: #0a0e14;
   background: #0a0e14;
-  min-height: 45px;
-  z-index: 10;
+  min-height: 48px;
+  display: flex !important;
+  border-radius: 12px;
 
   ion-segment-button {
-    min-height: 40px;
-    /* Đảm bảo text hiện rõ */
-    ion-label {
-      font-weight: bold;
-      font-size: 14px;
-    }
+    flex: 1;
+    --color-checked: #000;
+    --background-checked: #ffd700;
+    --indicator-color: transparent;
+    ion-label { font-weight: bold; font-size: 14px; }
   }
 }
 
-/* Fix lỗi nút bấm bị vô hiệu hóa do chồng lấn */
-.dark-card {
-  position: relative;
-  z-index: 1;
-  
-  .card-body {
-    display: flex;
-    flex-direction: column;
-    overflow: visible; // Để không bị cắt các hiệu ứng shadow
-  }
+/* Nút bấm vàng */
+.btn-gold {
+  --background: #ffd700;
+  --color: #000;
+  --border-radius: 12px;
+  font-weight: 800;
+  height: 55px;
+  margin: 0;
+  z-index: 10;
 }
 
-/* Khoảng trắng ở dưới cùng điện thoại */
-ion-content {
-  --padding-bottom: 50px;
+/* Logo & Animation */
+.logo-animation {
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  border: 3px solid #ffd700;
+  animation: pulse-glow 3s infinite ease-in-out;
+  object-fit: cover;
 }
 
-/* Hiệu ứng focus cho input */
-.dark-input-wrapper {
-  transition: all 0.3s ease;
-  &:focus-within {
-    border-color: #ffd700;
-    box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
-  }
-}
-.card-body {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px; // Tạo khoảng cách tự động giữa các khối (Input, Segment, Button)
-
-  /* Đảm bảo các khối con luôn chiếm đủ không gian */
-  .input-group, .dark-segment, .sub-mode-container {
-    flex-shrink: 0; 
-  }
+@keyframes pulse-glow {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 215, 0, 0.4); }
+  50% { transform: scale(1.05); box-shadow: 0 0 30px rgba(255, 215, 0, 0.7); }
 }
 
-/* Giới hạn độ rộng card trên Web để không bị dẹt */
-.dark-card {
-  max-width: 500px; 
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-}
-
-/* Fix lỗi hiển thị của ion-item trong radio group */
-.dark-radio-item {
-  --padding-start: 0;
-  --inner-padding-end: 0;
-  ion-label {
-    margin-left: 10px;
-  }
-}
+/* Các tiện ích khác */
+.label-flex { display: flex; justify-content: space-between; color: #adb5bd; font-size: 14px; }
+.dark-input-wrapper { background: #0a0e14; border: 1px solid #232d3b; border-radius: 12px; padding: 5px 15px; }
+.mt-20 { margin-top: 20px; }
