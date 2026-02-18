@@ -50,3 +50,31 @@ ion-content {
     box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
   }
 }
+.card-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px; // Tạo khoảng cách tự động giữa các khối (Input, Segment, Button)
+
+  /* Đảm bảo các khối con luôn chiếm đủ không gian */
+  .input-group, .dark-segment, .sub-mode-container {
+    flex-shrink: 0; 
+  }
+}
+
+/* Giới hạn độ rộng card trên Web để không bị dẹt */
+.dark-card {
+  max-width: 500px; 
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+/* Fix lỗi hiển thị của ion-item trong radio group */
+.dark-radio-item {
+  --padding-start: 0;
+  --inner-padding-end: 0;
+  ion-label {
+    margin-left: 10px;
+  }
+}
